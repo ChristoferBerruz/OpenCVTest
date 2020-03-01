@@ -34,9 +34,15 @@ namespace OpenCVTestCSharp
 
         private void btnCannyApply_Click(object sender, EventArgs e)
         {
-            Image<Gray, Byte> result = new Image<Gray, byte>(img.Size);
-            CvInvoke.Canny(image: img, edges: result, 50, 200);
-            picResult.Image = result.ToBitmap();
+            try
+            {
+                Image<Gray, Byte> result = new Image<Gray, byte>(img.Size);
+                CvInvoke.Canny(image: img, edges: result, 50, 200);
+                picResult.Image = result.ToBitmap();
+            }catch (Exception ex)
+            {
+                MessageBox.Show("Please load image first.");
+            }
         }
     }
 }
